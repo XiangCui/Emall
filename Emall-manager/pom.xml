@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.Emall</groupId>
+    <artifactId>Emall-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>cn.Emall</groupId>
+  <artifactId>Emall-manager</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <modules>
+  	<module>Emall-manager-pojo</module>
+  	<module>Emall-manager-service</module>
+  	<module>Emall-manager-dao</module>
+  	<module>Emall-manager-web</module>
+  </modules>
+  <!-- 后台聚合父工程
+  	1.管理子工程(统一打包部署,统一启动(tomcat))
+  	2.抽取子工程依赖公共坐标
+   -->
+   
+   <!-- 子工程都依赖common -->
+   <dependencies>
+	   	<dependency>
+	   		<groupId>cn.Emall</groupId>
+	   	 	<artifactId>Emall-common</artifactId>
+	   	 	<version>0.0.1-SNAPSHOT</version>
+	   	</dependency>
+   </dependencies>
+   <!-- 配置tomcat启动插件 -->
+   <build>
+   		<plugins>
+   			<plugin>
+   				<groupId>org.apache.tomcat.maven</groupId>
+   				<artifactId>tomcat7-maven-plugin</artifactId>
+   				<version>2.2</version>
+   				<configuration>
+   				<!-- /表示把项目发布到tomcat/webapps/ROOT目录下(tomcat根目录) -->
+   					<path>/</path>
+   					<port>8080</port>
+   				</configuration>
+   			</plugin>
+   		</plugins>
+   </build>
+   
+</project>
